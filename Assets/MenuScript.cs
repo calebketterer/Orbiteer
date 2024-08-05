@@ -110,7 +110,7 @@ public class MenuScript : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Comment out this line for export.
+        //UnityEditor.EditorApplication.isPlaying = false; // Comment out this line for export.
         Debug.Log("Orbiteer Application Ending...");
     }
 }

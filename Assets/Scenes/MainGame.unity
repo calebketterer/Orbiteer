@@ -2158,7 +2158,7 @@ MonoBehaviour:
   menus: {fileID: 0}
   ship: {fileID: 0}
   PlayerScore: 0
-  HighScore: 124
+  HighScore: 0
   ScoreText: {fileID: 1544313530}
   HighScoreText: {fileID: 1127797336}
   GameIsRunning: 0

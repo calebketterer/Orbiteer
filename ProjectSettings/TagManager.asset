@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Ship
   - Menu
+  - Shield
   layers:
   - Default
   - TransparentFX

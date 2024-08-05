@@ -7,6 +7,7 @@ public class ShipScript : MonoBehaviour
 {
     public MenuScript menus;
     public LogicScript logic;
+    //public ShieldScript shieldscript;
     //public DebrisMovementScript dms;
 
     public Rigidbody2D myRigidbody;
@@ -17,7 +18,9 @@ public class ShipScript : MonoBehaviour
     public Vector2 MouseLocation;
     public Vector2 DirectionToMouse;
 
-    public float SpeedOnClick = 10;
+    public float PrimarySpeedOnClick = 10;
+    public float SecondarySpeedOnClick = 10;
+
     public Vector2 TargetPosition;
     
 
@@ -26,6 +29,7 @@ public class ShipScript : MonoBehaviour
     {
         menus = GameObject.FindGameObjectWithTag("Menu").GetComponent<MenuScript>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        //shieldscript = GameObject.FindGameObjectWithTag("Shield").GetComponent<ShieldScript>();
         //dms = GameObject.FindGameObjectWithTag("DebrisMovement").GetComponent<DebrisMovementScript>().enabled = false;
     }
 
@@ -39,10 +43,17 @@ public class ShipScript : MonoBehaviour
             DirectionToMouse = (MouseLocation - (Vector2)transform.position).normalized;
             myRigidbody.transform.up = DirectionToMouse;
 
-            if (Input.GetMouseButton(0)|| Input.GetMouseButton(1))
+            if (Input.GetMouseButton(0))
             {
                 TargetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = Vector2.MoveTowards(transform.position, TargetPosition, SpeedOnClick * Time.deltaTime); // This works for movement, but not physics
+                transform.position = Vector2.MoveTowards(transform.position, TargetPosition, PrimarySpeedOnClick * Time.deltaTime); // This works for movement, but not physics
+                //myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, TargetPosition, SpeedOnClick * Time.deltaTime); // This works for a while, but I think the velocities added up
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                TargetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = Vector2.MoveTowards(transform.position, TargetPosition, SecondarySpeedOnClick  * Time.deltaTime); // This works for movement, but not physics
                 //myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, TargetPosition, SpeedOnClick * Time.deltaTime); // This works for a while, but I think the velocities added up
             }
 
@@ -83,6 +94,7 @@ public class ShipScript : MonoBehaviour
                 FlightPersistance = !FlightPersistance;
                 if (FlightPersistance) { 
                     Debug.Log("Flight Persistance Enabled.");
+                    
                 }
                 else
                 {
